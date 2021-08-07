@@ -1,5 +1,5 @@
 /**
- * UC2 : Make REST Call to show Hello Mark from BridgeLabz
+ * UC2 : Make REST Call to show Hello Sayani!
  *          - Use GET Request Method and pass name as query parameter
  *          - Use CURL to demonstrate the REST API Call
  *          - curl localhost:8080/getMessage?name=Sayani -w "\n"
