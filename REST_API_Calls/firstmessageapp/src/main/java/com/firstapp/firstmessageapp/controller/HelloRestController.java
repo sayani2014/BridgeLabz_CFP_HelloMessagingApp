@@ -1,10 +1,8 @@
 /**
- * UC4 : Make REST Call to show Hello Mark Taylor from BridgeLabz
- *       - Use POST Request Method and pass first name and last name in the Body
- *       - Create User DTO Bean with firstName and lastName as attributes.
- *       - Use CURL to demonstrate the REST API Call
- *       - curl -X POST -H "Content-Type: application/json" -d '{"firstName": ”Mark","lastName": ”Taylor"}'
-                                                                          "http://localhost:8080/hello/post" -w "\n"
+ * UC5 : Make REST Call to show Hello Mark Taylor from BridgeLabz
+ *          - Use PUT Request Method and pass first name as Path Variable and last name as Query Parameter
+ *          - Use CURL to demonstrate the REST API Call
+ *          - curl -X PUT localhost:8080/put/Mark/?lastName=Taylor -w "\n"
  *
  * @author : SAYANI KOLEY
  * @since : 07.08.2021
@@ -66,6 +64,22 @@ public class HelloRestController {
     @PostMapping("/post")
     public String sayHello(@RequestBody User user) {
         return "Hello " + user.getFirstName() + " " + user.getLastName() + "!";
+    }
+
+    /**
+     * Annotation for mapping HTTP PUT requests onto specific handler methods.
+     * Purpose : Use PUT Request Method and pass first name as Path Variable and last name as Query Parameter.
+                 Once the mapping takes place in the server, the sayHello() is called and the output message is
+                 displayed as output.
+     * @param firstName
+     * @param lastName
+     * @return
+     */
+
+    @PutMapping("/put/{firstName}")
+    public String sayHello(@PathVariable String firstName,
+                           @RequestParam(value = "lastName") String lastName) {
+        return "Hello " + firstName + " " + lastName + "!";
     }
 
 }
