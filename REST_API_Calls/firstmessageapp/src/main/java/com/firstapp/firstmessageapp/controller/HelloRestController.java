@@ -1,8 +1,8 @@
 /**
- * UC2 : Make REST Call to show Hello Sayani!
- *          - Use GET Request Method and pass name as query parameter
- *          - Use CURL to demonstrate the REST API Call
- *          - curl localhost:8080/getMessage?name=Sayani -w "\n"
+ * UC3 : Make REST Call to show Hello Sayani!
+ *       - Use GET Request Method and pass name as path variable
+ *       - Use CURL to demonstrate the REST API Call
+ *       - curl localhost:8080/param/Sayani -w "\n"
  *
  * @author : SAYANI KOLEY
  * @since : 07.08.2021
@@ -10,10 +10,7 @@
 
 package com.firstapp.firstmessageapp.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class HelloRestController {
@@ -40,6 +37,17 @@ public class HelloRestController {
 
     @GetMapping(value = "/getMessage")
     public String sayHello(@RequestParam(value = "name") String name) {
+        return "Hello " + name + "!";
+    }
+
+    /**
+     * Purpose : Use GET Request Method and pass name as path variable
+     * @param name
+     * @return
+     */
+    
+    @GetMapping("/param/{name}")
+    public String sayHelloParam(@PathVariable String name) {
         return "Hello " + name + "!";
     }
 }
