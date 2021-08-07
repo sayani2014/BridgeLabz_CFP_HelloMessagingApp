@@ -1,8 +1,10 @@
 /**
- * UC3 : Make REST Call to show Hello Sayani!
- *       - Use GET Request Method and pass name as path variable
+ * UC4 : Make REST Call to show Hello Mark Taylor from BridgeLabz
+ *       - Use POST Request Method and pass first name and last name in the Body
+ *       - Create User DTO Bean with firstName and lastName as attributes.
  *       - Use CURL to demonstrate the REST API Call
- *       - curl localhost:8080/param/Sayani -w "\n"
+ *       - curl -X POST -H "Content-Type: application/json" -d '{"firstName": ”Mark","lastName": ”Taylor"}'
+                                                                          "http://localhost:8080/hello/post" -w "\n"
  *
  * @author : SAYANI KOLEY
  * @since : 07.08.2021
@@ -10,6 +12,7 @@
 
 package com.firstapp.firstmessageapp.controller;
 
+import com.firstapp.firstmessageapp.model.User;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -50,4 +53,19 @@ public class HelloRestController {
     public String sayHelloParam(@PathVariable String name) {
         return "Hello " + name + "!";
     }
+
+    /**
+     * Annotation for mapping HTTP POST requests onto specific handler methods.
+     * Purpose : Use POST Request Method and pass first name and last name in the Body.
+                 Once the mapping takes place in the server, the sayHello() is called and the output message is
+                 displayed as output.
+     * @param user
+     * @return
+     */
+
+    @PostMapping("/post")
+    public String sayHello(@RequestBody User user) {
+        return "Hello " + user.getFirstName() + " " + user.getLastName() + "!";
+    }
+
 }
